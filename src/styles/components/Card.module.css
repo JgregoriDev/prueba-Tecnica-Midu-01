@@ -1,0 +1,34 @@
+:root {
+  --overlay-title-width: 15%;
+}
+.overlay {
+  position: relative;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay__title {
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  top: calc(100% - var(--overlay-title-width));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay__button {
+  background-color: tranparent;
+  text-align: right;
+}
+.overlay__button > button {
+  background-color: transparent;
+  border: none;
+}
+.overlay__icon:hover {
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 2px gray);
+}
