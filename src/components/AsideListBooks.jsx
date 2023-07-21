@@ -8,7 +8,7 @@ export const AsideListBooks = ({
   const mostrarListadoDeLibros = () => {
     console.log(booksReaded);
     return (
-      <div className="row min-vh-100">
+      <>
         {booksReaded?.map(book => {
           return (
             <article
@@ -33,9 +33,10 @@ export const AsideListBooks = ({
             </article>
           );
         })}
-      </div>
+      </>
     );
   };
+
   const mostrarTitulo = () => {
     return (
       <small className="text-danger">
@@ -43,6 +44,7 @@ export const AsideListBooks = ({
       </small>
     );
   };
+
   return (
     <aside
       style={{ overflowY: "scroll" }}
@@ -52,7 +54,7 @@ export const AsideListBooks = ({
       <section>
         <h2 className="">Listado de libros leidos</h2>
 
-        {Object.entries(booksReaded).length > 0
+        {booksReaded && Object?.entries(booksReaded).length > 0
           ? mostrarListadoDeLibros()
           : mostrarTitulo()}
       </section>

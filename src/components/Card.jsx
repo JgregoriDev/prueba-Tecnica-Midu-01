@@ -1,7 +1,7 @@
 import Col from "react-bootstrap/Col";
 import Styles from "@/styles/components/Card.module.css";
 import StarSX from "@/assets/icons/starXS.png";
-export const Card = ({ book, removeBook }) => {
+export const Card = ({ book, deleteFromListAndReadBook }) => {
   return (
     <>
       <Col className="my-3" xs={12} md={6} lg={4}>
@@ -15,7 +15,7 @@ export const Card = ({ book, removeBook }) => {
           <div className={Styles.overlay__button}>
             <button>
               <img
-                onClick={() => removeBook(book)}
+                onClick={() => deleteFromListAndReadBook(book)}
                 src={StarSX}
                 className={Styles.overlay__icon}
                 alt=""

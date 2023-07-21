@@ -6,9 +6,7 @@ import {
   useListReadedBooks,
 } from "@/hooks";
 import { useState } from "react";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import { AsideListBooks } from "../components/AsideListBooks";
 export const PaginaPrincipal = () => {
   const { load, books, addBooksToLS, filterBookfilterBooksByName } = useBooks();
@@ -49,17 +47,25 @@ export const PaginaPrincipal = () => {
     setShowAside(!showAside);
     body.classList.toggle("overflow-y-hidden");
   };
+
   const addBooks = book => {
     setBookHelper([...bookHelper, book]);
   };
-  return (
-    <main>
-      <h1>Pagina Principal</h1>
 
-      <Container>
-        <Row className="">
-          <h2>Listado de libros</h2>
-          <div className="row ">
+  const deleteFromListAndReadBook = book => {
+    removeBook(book);
+    addBooksReaded(book);
+  };
+
+  return (
+    <>
+      <header>
+        <h1>Listado de libros</h1>
+      </header>
+      <main className="container-fluid">
+        <div className="row">
+          {/* <h2>Listado de libros</h2> */}
+          <div className="col-12 col-lg-2 ">
             <div className="mb-3 col-lg-6 col-12">
               <label htmlFor="search" className="form-label">
                 Search:
@@ -115,21 +121,29 @@ export const PaginaPrincipal = () => {
               </select>
             </div>
           </div>
-          {load ? (
-            bookHelper?.map(book => (
-              <Card key={book.id} book={book} removeBook={removeBook} />
-            ))
-          ) : (
-            <Spin />
-          )}
-        </Row>
-        <AsideListBooks
-          addBooks={addBooks}
-          removeBookReaded={removeBookReaded}
-          showAside={showAside}
-          booksReaded={booksReaded}
-        />
-      </Container>
-    </main>
+          <div className="col-12 col-lg-8">
+            <div className="row">
+              {load ? (
+                bookHelper?.map(book => (
+                  <Card
+                    key={book.id}
+                    book={book}
+                    deleteFromListAndReadBook={deleteFromListAndReadBook}
+                  />
+                ))
+              ) : (
+                <Spin />
+              )}
+            </div>
+          </div>
+          <AsideListBooks
+            booksReaded={booksReaded}
+            showAside={showAside}
+            removeBookReaded={removeBookReaded}
+            addBooks={addBooks}
+          />
+        </div>
+      </main>
+    </>
   );
 };
